@@ -1,0 +1,6 @@
+PORT=<PORT you wish to run this on>
+CLIENT_ORIGIN=<Origin of the client application>
+DATABASE_URL=<URL of the MongoDB instance you are connecting to>
+TEST_DATABASE_URL=<URL of the TEST MongoDB instance you are connecting to>
+MAX_BURST=<Max amount of simultaneous requests allowed per IP>
+FILL_RATE_PER_SECOND=<how many tokens should be added per second for rate limit>
