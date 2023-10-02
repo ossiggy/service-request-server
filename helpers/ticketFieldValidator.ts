@@ -41,3 +41,18 @@ export const validatePayload = (payload: ServiceRequestSchemaBaseProps) => {
   && validateKeys(contactInfo, requiredContactFields, validContactFields)
   && validateKeys(address, requiredAddressFields)
 };
+
+export const validateUpdatePayload = (payload: ServiceRequestSchemaBaseProps) => {
+  const { customerName, contactInfo } = payload;
+  const { address } = contactInfo;
+  let validAddress = true;
+
+  if (address) {
+    validAddress = hasValidKeys(Object.keys(address), requiredAddressFields)
+  }
+
+  return hasValidKeys(Object.keys(payload), requiredTicketFields) 
+  && hasValidKeys(Object.keys(customerName), [...requiredCustomerNameFields, ...validCustomerNameFields]) 
+  && hasValidKeys(Object.keys(contactInfo), [...requiredContactFields, ...validContactFields])
+  && validAddress
+}

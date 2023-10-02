@@ -1,1 +1,1 @@
-export { validatePayload } from "./ticketFieldValidator"
+export { validatePayload, validateUpdatePayload } from "./ticketFieldValidator"

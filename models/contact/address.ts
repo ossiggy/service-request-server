@@ -7,4 +7,4 @@ export const AddressSchema = new Schema({
   stateOrProvince: { type: String, required: true },
   country: { type: String, required: true },
   postalCode: { type: String, required: true }
-});
+}, { _id: false });
