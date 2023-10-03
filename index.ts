@@ -21,7 +21,7 @@ app.use(
   })
 );
 
-app.use("/api/ticket", rateLimitByIp(MAX_BURST, FILL_RATE_PER_SECOND), ticketRouter)
+app.use("/api/tickets", rateLimitByIp(MAX_BURST, FILL_RATE_PER_SECOND), ticketRouter)
 
 let server: any;
 
