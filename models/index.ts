@@ -1,3 +1,3 @@
 export { ServiceRequest } from './service-request';
-export type { ServiceRequestSchemaBaseProps } from "./service-request/types";
-export type { AddressSchemaType, ContactSchemaType, CustomerNameSchemaType } from "./contact/types";
+export type { AddressSchemaType, ServiceRequestSchemaBaseProps } from "./service-request/types";
+export type { ContactSchemaType, CustomerNameSchemaType } from "./contact/types";

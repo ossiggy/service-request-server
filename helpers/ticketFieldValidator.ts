@@ -33,8 +33,7 @@ const validateKeys: ValidatorType = (payload, requiredFields, validFields) => {
 };
 
 export const validatePayload = (payload: ServiceRequestSchemaBaseProps) => {
-  const { customerName, contactInfo } = payload;
-  const { address } = contactInfo;
+  const { customerName, contactInfo, address } = payload;
 
   return validateKeys(payload, requiredTicketFields) 
   && validateKeys(customerName, requiredCustomerNameFields, validCustomerNameFields) 
@@ -43,8 +42,7 @@ export const validatePayload = (payload: ServiceRequestSchemaBaseProps) => {
 };
 
 export const validateUpdatePayload = (payload: ServiceRequestSchemaBaseProps) => {
-  const { customerName, contactInfo } = payload;
-  const { address } = contactInfo;
+  const { customerName, contactInfo, address } = payload;
   let validAddress = true;
 
   if (address) {
