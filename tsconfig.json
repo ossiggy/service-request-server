@@ -1,11 +1,11 @@
 {
-    "compilerOptions": {
-      "module": "commonjs",
-      "types": ["mocha", "node"],
-      "target": "es6",
-      "rootDir": "./",
-      "strict": true,
-      "esModuleInterop": true,
-      "resolveJsonModule": true
-    }
+  "compilerOptions": {
+    "module": "commonjs",
+    "types": ["mocha", "node"],
+    "target": "es6",
+    "rootDir": "./",
+    "strict": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   }
+}

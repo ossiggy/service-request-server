@@ -1,1 +1,1 @@
-export { ticketRouter } from "./service-request"
+export { ticketRouter } from './service-request';

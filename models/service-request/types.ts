@@ -1,5 +1,5 @@
-import { Model } from "mongoose";
-import { ContactSchemaType, CustomerNameSchemaType } from "../contact/types";
+import { Model } from 'mongoose';
+import { ContactSchemaType, CustomerNameSchemaType } from '../contact/types';
 
 export interface AddressSchemaType {
   houseNumber: string;
@@ -11,12 +11,12 @@ export interface AddressSchemaType {
 }
 
 export interface ServiceRequestSchemaBaseProps {
-    id: string;
-    customerName: CustomerNameSchemaType;
-    contactInfo: ContactSchemaType;
-    address: AddressSchemaType;
-    requestedService: string;
-    status: string;
+  id: string;
+  customerName: CustomerNameSchemaType;
+  contactInfo: ContactSchemaType;
+  address: AddressSchemaType;
+  requestedService: string;
+  status: string;
 }
 
 export interface ServiceRequestSchemaProps extends ServiceRequestSchemaBaseProps {

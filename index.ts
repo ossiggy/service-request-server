@@ -1,10 +1,10 @@
-import express from "express";
+import express from 'express';
 import cors from 'cors';
-import mongoose, { ConnectOptions, MongooseError } from "mongoose";
-import { dbConnect, mongoOptions } from "./db-mongoose";
-import { ticketRouter } from "./routes";
-import { rateLimitByIp } from "./middleware";
-import { PORT, CLIENT_ORIGIN, DATABASE_URL, MAX_BURST, FILL_RATE_PER_SECOND } from "./config";
+import mongoose, { ConnectOptions, MongooseError } from 'mongoose';
+import { dbConnect, mongoOptions } from './db-mongoose';
+import { ticketRouter } from './routes';
+import { rateLimitByIp } from './middleware';
+import { PORT, CLIENT_ORIGIN, DATABASE_URL, MAX_BURST, FILL_RATE_PER_SECOND } from './config';
 
 export const app = express();
 app.use(express.json());
@@ -21,14 +21,11 @@ app.use(
   })
 );
 
-app.use("/api/tickets", rateLimitByIp(MAX_BURST, FILL_RATE_PER_SECOND), ticketRouter)
+app.use('/api/tickets', rateLimitByIp(MAX_BURST, FILL_RATE_PER_SECOND), ticketRouter);
 
 let server: any;
 
-export const runServer = async (
-  databaseUrl = DATABASE_URL,
-  port = PORT
-): Promise<void> => {
+export const runServer = async (databaseUrl = DATABASE_URL, port = PORT): Promise<void> => {
   return new Promise<void>(async (resolve, reject) => {
     try {
       await mongoose.connect(databaseUrl, mongoOptions as ConnectOptions);
@@ -38,7 +35,7 @@ export const runServer = async (
         resolve();
       });
 
-      server.on("error", (err: MongooseError) => {
+      server.on('error', (err: MongooseError) => {
         mongoose.disconnect();
         reject(err);
       });
@@ -52,7 +49,7 @@ export const closeServer = async (): Promise<void> => {
   try {
     await mongoose.disconnect();
     await new Promise<void>((resolve, reject) => {
-      console.log("Closing server");
+      console.log('Closing server');
       server.close((err: any) => {
         if (err) {
           reject(err);

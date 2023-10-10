@@ -1,25 +1,32 @@
-import { requiredTicketFields, requiredAddressFields, requiredContactFields, requiredCustomerNameFields, validContactFields, validCustomerNameFields } from "./validAndRequiredFields";
-import type { ServiceRequestSchemaBaseProps } from "../models";
+import {
+  requiredTicketFields,
+  requiredAddressFields,
+  requiredContactFields,
+  requiredCustomerNameFields,
+  validContactFields,
+  validCustomerNameFields
+} from './validAndRequiredFields';
+import type { ServiceRequestSchemaBaseProps } from '../models';
 type ValidatorType = (payload: any, requiredFields: string[], validFields?: string[]) => boolean;
 
-const hasRequiredFields = (payloadKeys:string[], requiredFields: string[]) => {
+const hasRequiredFields = (payloadKeys: string[], requiredFields: string[]) => {
   requiredFields.forEach(field => {
     if (!payloadKeys.includes(field)) {
-      return false
+      return false;
     }
-  })
+  });
   return true;
-}
+};
 
 const hasValidKeys = (payloadKeys: string[], validFields: string[]) => {
   payloadKeys.forEach(key => {
-    if(!validFields.includes(key)) {
-      return false
+    if (!validFields.includes(key)) {
+      return false;
     }
-  })
+  });
 
   return true;
-}
+};
 
 const validateKeys: ValidatorType = (payload, requiredFields, validFields) => {
   let allFieldsValid = true;
@@ -27,18 +34,19 @@ const validateKeys: ValidatorType = (payload, requiredFields, validFields) => {
   if (validFields) {
     allFieldsValid = hasValidKeys(payloadKeys, [...requiredFields, ...validFields]);
   }
-  
-  return hasRequiredFields(payloadKeys, requiredFields) && allFieldsValid;
 
+  return hasRequiredFields(payloadKeys, requiredFields) && allFieldsValid;
 };
 
 export const validatePayload = (payload: ServiceRequestSchemaBaseProps) => {
   const { customerName, contactInfo, address } = payload;
 
-  return validateKeys(payload, requiredTicketFields) 
-  && validateKeys(customerName, requiredCustomerNameFields, validCustomerNameFields) 
-  && validateKeys(contactInfo, requiredContactFields, validContactFields)
-  && validateKeys(address, requiredAddressFields)
+  return (
+    validateKeys(payload, requiredTicketFields) &&
+    validateKeys(customerName, requiredCustomerNameFields, validCustomerNameFields) &&
+    validateKeys(contactInfo, requiredContactFields, validContactFields) &&
+    validateKeys(address, requiredAddressFields)
+  );
 };
 
 export const validateUpdatePayload = (payload: ServiceRequestSchemaBaseProps) => {
@@ -46,11 +54,13 @@ export const validateUpdatePayload = (payload: ServiceRequestSchemaBaseProps) =>
   let validAddress = true;
 
   if (address) {
-    validAddress = hasValidKeys(Object.keys(address), requiredAddressFields)
+    validAddress = hasValidKeys(Object.keys(address), requiredAddressFields);
   }
 
-  return hasValidKeys(Object.keys(payload), requiredTicketFields) 
-  && hasValidKeys(Object.keys(customerName), [...requiredCustomerNameFields, ...validCustomerNameFields]) 
-  && hasValidKeys(Object.keys(contactInfo), [...requiredContactFields, ...validContactFields])
-  && validAddress
-}
+  return (
+    hasValidKeys(Object.keys(payload), requiredTicketFields) &&
+    hasValidKeys(Object.keys(customerName), [...requiredCustomerNameFields, ...validCustomerNameFields]) &&
+    hasValidKeys(Object.keys(contactInfo), [...requiredContactFields, ...validContactFields]) &&
+    validAddress
+  );
+};

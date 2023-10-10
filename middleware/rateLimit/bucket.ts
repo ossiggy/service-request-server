@@ -16,11 +16,11 @@ export class Bucket {
 
     if (this.tokens >= 1) {
       this.tokens--;
-      console.log("Removed a token, " + this.tokens + " left.");
+      console.log('Removed a token, ' + this.tokens + ' left.');
       return true;
     }
 
-    console.log("Not enough tokens left.");
+    console.log('Not enough tokens left.');
     return false;
   }
 
