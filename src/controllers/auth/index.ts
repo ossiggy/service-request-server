@@ -12,7 +12,6 @@ const createAuthToken = (user: UserSchemaBaseProps): string => {
 };
 
 export const login = (req: Request, res: Response) => {
-  console.log('login req', req.user);
   const authToken = req.user && createAuthToken(req.user);
   if (authToken) {
     res.json({ authToken });
