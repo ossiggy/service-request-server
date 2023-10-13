@@ -5,8 +5,10 @@
   "main": "index.ts",
   "scripts": {
     "test": "ts-mocha -p ./tsconfig.json ./test/**/*.ts --exit",
-    "dev": "npx nodemon ./index.ts",
-    "start": "ts-node ."
+    "dev": "npx nodemon ./src/index.ts",
+    "build": "tsc",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
+    "start": "npm run build && npx nodemon ./build/."
   },
   "author": "Mike Ossig",
   "license": "ISC",
